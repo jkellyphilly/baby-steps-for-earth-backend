@@ -12,9 +12,9 @@ class GoalsController < ApplicationController
   def create
     goal = Goal.create(goals_params)
     if goal.valid?
-      render json: GoalSerializer.new(goal)
+      render json: GoalSerializer.new(goal), status: :create
     else
-      render json: { message: "Error: failed to create this new goal" }
+      render json: { message: goal.errors.full_messages[0] }, status: :not_acceptable
     end
   end
 
