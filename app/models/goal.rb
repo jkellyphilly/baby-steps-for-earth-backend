@@ -1,5 +1,8 @@
 class Goal < ApplicationRecord
 
-  validates :title, :step_1, :step_2, :step_3, presence: true
-  
+  has_many :goal_tags
+  has_many :tags, through: :goal_tags
+
+  validates :title, :content, presence: true
+
 end
