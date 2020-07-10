@@ -5,4 +5,6 @@ class Tag < ApplicationRecord
 
   validates :content, presence: true
 
+  # scope :with_content, ->(tag_name) { where("content = ?", tag_name) }
+
 end
