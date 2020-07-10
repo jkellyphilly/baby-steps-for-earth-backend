@@ -14,9 +14,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_205834) do
 
   create_table "goals", force: :cascade do |t|
     t.string "title"
-    t.string "step_1"
-    t.string "step_2"
-    t.string "step_3"
+    t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
