@@ -4,7 +4,7 @@ class GoalsController < ApplicationController
     if params[:tags] == "all"
       goals = Goal.all
     else
-      goals = Goal.joins(:tags).where(tags: { content: params[:tags] })
+      goals = Goal.joins(:tags).where(tags: { content: Tag.slugify(params[:tags]) })
     end
     render json: GoalSerializer.new(goals)
   end
@@ -14,7 +14,7 @@ class GoalsController < ApplicationController
 
     # Associate all tags with this goal and create new if required
     goal.create_tags_from_params(params[:tags])
-    
+
     if goal.valid?
       render json: GoalSerializer.new(goal), status: :created
     else
