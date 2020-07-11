@@ -6,4 +6,9 @@ class Plan < ApplicationRecord
   validates :username, presence: true
   validates :goals, length: {is: 7}
 
+  def associate_goals(goals)
+    goals.each {|goal_id| self.goals << Goal.find(goal_id)}
+    self.save
+  end
+
 end
