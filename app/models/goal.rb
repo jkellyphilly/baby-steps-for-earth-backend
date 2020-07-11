@@ -8,4 +8,8 @@ class Goal < ApplicationRecord
 
   validates :title, :content, presence: true
 
+  def create_tags_from_params(tags)
+    tags.split(',').each {|tc| self.tags << Tag.find_or_create_by_tag_content(tc)}
+  end
+
 end

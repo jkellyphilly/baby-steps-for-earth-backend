@@ -11,6 +11,10 @@ class GoalsController < ApplicationController
 
   def create
     goal = Goal.create(goals_params)
+
+    # Associate all tags with this goal and create new if required
+    goal.create_tags_from_params(params[:tags])
+    
     if goal.valid?
       render json: GoalSerializer.new(goal), status: :created
     else
@@ -21,7 +25,7 @@ class GoalsController < ApplicationController
   private
 
   def goals_params
-    params.require(:goal).permit(:title, :content)
+    params.require(:goal).permit(:title, :content, :tags)
   end
 
 end
