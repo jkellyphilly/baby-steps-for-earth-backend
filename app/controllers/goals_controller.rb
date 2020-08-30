@@ -1,5 +1,7 @@
 class GoalsController < ApplicationController
 
+  # Use the params to determine whether to send back all goals
+  # or whether to only send back goals that have the given tag
   def index
     if params[:tags] == "all"
       goals = Goal.all
